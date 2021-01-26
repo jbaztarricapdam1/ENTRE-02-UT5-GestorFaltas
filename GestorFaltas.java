@@ -10,10 +10,12 @@ import java.util.Scanner;
  *
  */
 public class GestorFaltas {
-     
+    private Estudiante[] estudiantes;
+    private int total;
 
     public GestorFaltas(int n) {
-         
+        this.estudiantes = new Estudiante[n];
+        int total = 0;
     }
 
     /**
@@ -21,7 +23,7 @@ public class GestorFaltas {
      * false en otro caso
      */
     public boolean cursoCompleto() {
-        return false;
+        return total == estudiantes.length;
     }
 
     /**
@@ -37,10 +39,23 @@ public class GestorFaltas {
      *    
      */
     public void addEstudiante(Estudiante nuevo) {
-        
+        if (!cursoCompleto()) {
+            if (buscarEstudiante(nuevo.getApellidos()) == -1){
+                for(int i = 0; i < total; i++) {
+                    estudiantes[i].setApellidos(nuevo.getApellidos());
+                }
+            }else {
+                System.out.println("No se permite añadir el alumno ya que coinciden los apellidos");
+            }
+        }else if(!cursoCompleto() && buscarEstudiante(nuevo.getApellidos()) == 0){
+            System.out.println("No se permite añadir el alumno ya que coinciden los apellidos y el curso está completo");
+
+        }else{
+            System.out.println("No se permite añadir el alumno ya que el curso está completo");
+
+        }
 
     }
-
 
     /**
      * buscar un estudiante por sus apellidos
@@ -51,7 +66,7 @@ public class GestorFaltas {
      *  
      */
     public int buscarEstudiante(String apellidos) {
-         
+
         return 0;
     }
 
@@ -61,8 +76,11 @@ public class GestorFaltas {
      *  
      */
     public String toString() {
-        
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < total; i++){
+            sb.append(estudiantes[i].toString());
+        }
+        return sb.toString();
 
     }
 
@@ -75,7 +93,6 @@ public class GestorFaltas {
      *  justificar también)
      */
     public void justificarFaltas(String apellidos, int faltas) {
-         
 
     }
 
@@ -85,7 +102,6 @@ public class GestorFaltas {
      * Método de selección directa
      */
     public void ordenar() {
-        
 
     }
 
@@ -94,7 +110,6 @@ public class GestorFaltas {
      * aquellos estudiantes con 30 o más faltas injustificadas
      */
     public void anularMatricula() {
-         
 
     }
 

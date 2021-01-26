@@ -1,3 +1,7 @@
+
+import java.util.Arrays;
+import java.util.Arrays;
+
 /**
  * Un objeto de esta clase guarda la información de un estudiante
  *
@@ -17,16 +21,24 @@ public class Estudiante {
      *  
      */
     public Estudiante(String lineaDatos) {
-         
+        String[] datos = lineaDatos.split(SEPARADOR);
+        nombre = datos[0];
 
+        for (int i = 0; i < datos.length; i++) {
+            datos[i] = datos[i].trim();
+        }
+
+        apellidos = datos[1].toUpperCase();
+        faltasNoJustificadas = Integer.parseInt(datos[2].trim());
+        faltasJustificadas = Integer.parseInt(datos[3].trim());
+        
     }
-
 
     /**
      * accesor para el nombre completo
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -93,13 +105,15 @@ public class Estudiante {
      * (ver enunciado)
      */
     public String toString() {
-        
+        String strResult = "";
+        for (int i = 0; i < faltasNoJustificadas; i++) {
+
+        } 
         return null;
 
     }
 
-
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         Estudiante e1 = new Estudiante("  ander ibai  ,  Ruiz Sena , 12, 23");
         System.out.println(e1);
         System.out.println();
@@ -113,7 +127,6 @@ public class Estudiante {
         Estudiante e4 = new Estudiante("julen, Duque Puyal, 5, 55");
         System.out.println(e4);
         System.out.println();
-        
 
         System.out.println("---------------------------------");
         e1.justificar(3);

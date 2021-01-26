@@ -8,7 +8,10 @@ public class TestGestorFaltas {
      * (ver enunciado)
      */
     public static void main(String[] args) {
-        
+       GestorFaltas gestorFaltas = new GestorFaltas(9);
+       gestorFaltas.leerDeFichero();
+       System.out.println(gestorFaltas.toString());
     }
+    
 
 }
